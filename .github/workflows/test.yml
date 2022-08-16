@@ -1,5 +1,8 @@
 name: Hello
 
+on:
+  branches: main
+
 jobs:
   test:
     name: Test
