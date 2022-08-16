@@ -1,1 +1,10 @@
 name: Hello
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - shell: bash
+        run: echo "hello everyone."
