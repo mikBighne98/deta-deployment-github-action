@@ -1,10 +1,12 @@
 name: Test
 description: A test for action.
 inputs:
-  req_false:
+  req-false:
+    description: 'Who to greet'
     required: false
    
-  req_true:
+  req-true:
+    escription: 'Who to greet2'
     required: true
 
 runs:
@@ -12,8 +14,8 @@ runs:
   steps:
     - name: Checking for req_false
       shell: bash
-      run: echo ${{ inputs.req_false }}
+      run: echo ${{ inputs.req-false }}
       
     - name: Checking for req_true
       shell: bash
-      run: echo ${{ inputs.req_true }}
+      run: echo ${{ inputs.req-true }}
