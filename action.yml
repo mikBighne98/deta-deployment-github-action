@@ -1,0 +1,25 @@
+name: Test
+description: A test for action.
+inputs:
+  req_false:
+    required: false
+   
+  req_true:
+    required: true
+   
+  req_not_described:
+
+runs:
+  using: composite
+  steps:
+    - name: Checking for req_false
+      shell: bash
+      run: echo ${{ inputs.req_false }}
+      
+    - name: Checking for req_true
+      shell: bash
+      run: echo ${{ inputs.req_true }}
+      
+    - name: Checking for req_not_described
+      shell: bash
+      run: echo ${{ inputs.req_not_described }}
