@@ -23,3 +23,7 @@ runs:
     - name: Checking for req_true
       shell: bash
       run: echo ${{ inputs.req-true }}
+
+    - name: Checking for req
+      shell: bash
+      run: echo ${{ inputs.req }}
