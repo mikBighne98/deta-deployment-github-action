@@ -6,9 +6,6 @@ inputs:
    
   req_true:
     required: true
-   
-  req_not_described:
-    required: true
 
 runs:
   using: "composite"
@@ -20,7 +17,3 @@ runs:
     - name: Checking for req_true
       shell: bash
       run: echo ${{ inputs.req_true }}
-      
-    - name: Checking for req_not_described
-      shell: bash
-      run: echo ${{ inputs.req_not_described }}
