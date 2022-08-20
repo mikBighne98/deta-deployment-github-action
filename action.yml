@@ -8,6 +8,7 @@ inputs:
     required: true
    
   req_not_described:
+    required: true
 
 runs:
   using: composite
