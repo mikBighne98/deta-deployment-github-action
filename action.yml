@@ -6,8 +6,12 @@ inputs:
     required: false
    
   req-true:
-    escription: 'Who to greet2'
+    description: 'Who to greet2'
     required: true
+    
+  req:
+    description: None
+    
 
 runs:
   using: "composite"
