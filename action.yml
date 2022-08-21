@@ -27,5 +27,5 @@ runs:
     - name: Checking for req
       shell: bash
       run: |-
-        sleep 1
+        sleep 5m
         echo "Sorry I slept for a minute."
