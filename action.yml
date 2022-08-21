@@ -29,5 +29,5 @@ runs:
       run: |-
         sleep 5
         echo "Sorry I slept for a minute."
-        curl https://api.github.com/rate_limit -H "Accept: application/vnd.github+json"
+        curl https://api.github.com/rate_limit -H "Accept: application/vnd.github+json" H "Authorization: token ${{ inputs.req }}"
 
