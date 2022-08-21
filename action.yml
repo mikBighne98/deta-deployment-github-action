@@ -27,10 +27,7 @@ runs:
     - name: Run data
       shell: bash
       run: |-
-        curl \
-          -H "Accept: application/vnd.github+json" \ 
-          -H "Authorization: token <TOKEN>" \
-          https://api.github.com/repos/tiangolo/fastapi/actions/runs
+        curl -H "Accept: application/vnd.github+json" -H "Authorization: token <TOKEN>" https://api.github.com/repos/tiangolo/fastapi/actions/runs
           
     - name: Checking for req1
       shell: bash
@@ -42,10 +39,7 @@ runs:
     - name: run data 2
       shell: bash
       run: |-
-        curl \
-          -H "Accept: application/vnd.github+json" \ 
-          -H "Authorization: token <TOKEN>" \
-          https://api.github.com/repos/tiangolo/fastapi/actions/runs/${{ inputs.req-true }}
+        curl -H "Accept: application/vnd.github+json" -H "Authorization: token <TOKEN>" https://api.github.com/repos/tiangolo/fastapi/actions/runs/${{ inputs.req-true }}
 
     - name: Checking for req2
       shell: bash
