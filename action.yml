@@ -28,5 +28,4 @@ runs:
       shell: bash
       run: |-
         sleep 5
-        echo ${{ github.jobs }}
         echo "Sorry I slept for a minute."
