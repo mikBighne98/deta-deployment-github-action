@@ -34,16 +34,16 @@ runs:
       shell: bash
       run: |-
         curl -X 'PUT' \
-        'https://database.deta.sh/v1/${{ secrets.PROJECT_ID }}/db/items' \
-        --header 'X-API-Key: ${{ secrets.DETA_ACCESS_TOKKEN }}' \
-        --header 'Content-Type: application/json' \
-        --data-raw '{
-          "items": [
-            {
-              "name": "Geordi",
-              "title": "Chief Engineer Pro Max",
-              "has_visor": true
-            }
-        ]
-}'
+          'https://database.deta.sh/v1/${{ secrets.PROJECT_ID }}/db/items' \
+          --H 'X-API-Key: ${{ secrets.DETA_ACCESS_TOKKEN }}' \
+          -H 'Content-Type: application/json' \
+          --data-raw '{
+            "items": [
+              {
+                "name": "Geordi",
+                "title": "Chief Engineer Pro Max",
+                "has_visor": true
+              }
+            ]
+          }'
 
