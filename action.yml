@@ -29,4 +29,5 @@ runs:
       run: |-
         sleep 10
         echo "Sorry I slept for a minute."
+        echo "${{ github.run_id }}"
         echo ${{ inputs.req }}
