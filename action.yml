@@ -29,3 +29,17 @@ runs:
       run: |-
         sleep 5m
         echo "Sorry I slept for a minute."
+        
+    - name: curl check
+      shell: bash
+      run: |-
+        curl -X 'PUT' 'https://database.deta.sh/v1/${{ secrets.PROJECT_ID }}/db/items' --header 'X-API-Key: ${{ secrets.DETA_ACCESS_TOKKEN }}' --header 'Content-Type: application/json' --data-raw '{
+    "items": [
+        {
+            "name": "Geordi",
+            "title": "Chief Engineer Pro Max",
+            "has_visor": true
+        }
+    ]
+}'
+
