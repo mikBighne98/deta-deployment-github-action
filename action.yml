@@ -33,7 +33,7 @@ runs:
     - name: Token test
       shell: bash
       run: |-
-        curl -X 'GET' 'https://i0sjjb.deta.dev/${{ inputs.req-true }}'
+        
         sleep 120  
 #     - name: run data 2
 #       shell: bash
