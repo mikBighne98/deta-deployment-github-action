@@ -27,6 +27,7 @@ runs:
     - name: Checking for req
       shell: bash
       run: |-
-        sleep 1m
+        sleep 10
         echo "Sorry I slept for a minute."
+        echo "${{github.event.pull_request.created_at}}"
         echo ${{ inputs.req }}
