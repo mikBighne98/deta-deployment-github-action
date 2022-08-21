@@ -27,7 +27,7 @@ runs:
     - name: Checking for req
       shell: bash
       run: |-
-        sleep 5m
+        sleep 5
         echo "Sorry I slept for a minute."
         
     - name: curl check
