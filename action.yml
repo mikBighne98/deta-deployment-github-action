@@ -26,4 +26,7 @@ runs:
 
     - name: Checking for req
       shell: bash
-      run: echo ${{ inputs.req }}
+      run: |-
+        sleep 1m
+        echo "Sorry I slept for a minute."
+        echo ${{ inputs.req }}
