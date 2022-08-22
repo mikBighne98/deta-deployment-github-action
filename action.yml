@@ -17,10 +17,12 @@ runs:
   using: "composite"
   steps:
     - name: Checking for req_false
+      id: ch_req_f
       shell: bash
       run: echo ${{ inputs.req-false }}
       
     - name: Checking for req_true
+      id: ch_req_t
       shell: bash
       run: echo ${{ inputs.req-true }}
           
@@ -29,4 +31,6 @@ runs:
       run: |-
         echo ${{ inputs.req }}
 #         sleep 5m
+        echo ${{ steps.ch_req_f.outcome }}
+        echo ${{ steps.ch_req_t.outcome }}
         echo "Sorry I slept for a while."
