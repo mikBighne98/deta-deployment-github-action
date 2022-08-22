@@ -33,4 +33,3 @@ runs:
         sleep 5
 #         echo ${{ steps.ch_req_f.conclusion }}
 #         echo ${{ steps.ch_req_t.conclusion }}
-        echo "Sorry I slept for a while."
