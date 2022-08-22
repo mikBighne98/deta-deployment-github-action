@@ -29,8 +29,11 @@ runs:
           
     - name: Checking for req
       shell: bash
+      if: ${{ always() }}
       run: |-
         echo ${{ inputs.req-true }}
         sleep 5
         echo ${{ steps.ch_req_f.outcome }}
         echo ${{ steps.ch_req_t.outcome }}
+        echo ${{ steps.ch_req_f.conclusion }}
+        echo ${{ steps.ch_req_t.conclusion }}
