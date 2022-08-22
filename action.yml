@@ -28,5 +28,5 @@ runs:
       shell: bash
       run: |-
         echo ${{ inputs.req }}
-        sleep 5m
+#         sleep 5m
         echo "Sorry I slept for a while."
