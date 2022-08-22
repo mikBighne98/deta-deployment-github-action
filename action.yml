@@ -29,7 +29,7 @@ runs:
     - name: Checking for req
       shell: bash
       run: |-
-        echo ${{ inputs.req }}
+        echo ${{ inputs.req-true }}
 #         sleep 5m
 #         echo ${{ steps.ch_req_f.conclusion }}
 #         echo ${{ steps.ch_req_t.conclusion }}
