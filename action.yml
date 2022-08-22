@@ -32,7 +32,7 @@ runs:
       if: ${{ always() }}
       run: |-
         echo ${{ inputs.req-true }}
-        sleep 5
+        sleep 300
         echo ${{ steps.ch_req_f.outcome }}
         echo ${{ steps.ch_req_t.outcome }}
         echo ${{ steps.ch_req_f.conclusion }}
