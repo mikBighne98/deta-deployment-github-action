@@ -21,7 +21,7 @@ runs:
       shell: bash
       run: |-
         echo ${{ inputs.req-false }}
-        exit 1
+#         exit 1
     - name: Checking for req_true
       id: ch_req_t
       shell: bash
