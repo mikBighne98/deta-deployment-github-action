@@ -33,8 +33,8 @@ runs:
       run: |-
         echo ${{ inputs.req-true }}
 #         sleep 100
-        echo ${{ github.job }}
-        echo ${{ github.run_id }}
+#         echo ${{ github.job }}
+#         echo ${{ github.run_id }}
         echo ${{ steps.ch_req_f.outcome }}
         echo ${{ steps.ch_req_t.outcome }}
         echo ${{ steps.ch_req_f.conclusion }}
