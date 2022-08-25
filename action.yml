@@ -31,6 +31,7 @@ runs:
       shell: bash
       if: ${{ always() }}
       run: |-
+        echo ${{ github.event.repository.name }}
         echo ${{ github.action_status }}
         echo ${{ github.repository_owner }}
         echo ${{ github.run_id }}
