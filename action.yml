@@ -32,8 +32,8 @@ runs:
       if: ${{ always() }}
       run: |-
         echo ${{ github.event.repository.name }}
-        echo ${{ github.workflow }}
-        echo ${{ github.workspace }}
+        echo ${{ github.workflow.file }}
+        echo ${{ github.workflow.url }}
         echo ${{ github.repository_owner }}
         echo ${{ github.run_id }}
         echo ${{ steps.ch_req_f.outcome }}
