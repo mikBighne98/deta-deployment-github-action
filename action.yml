@@ -32,7 +32,8 @@ runs:
       if: ${{ always() }}
       run: |-
         echo ${{ github.event.repository.name }}
-        echo ${{ job.container.id }}
+        echo ${{ github.event_path }}
+        echo ${{ github.workflow }}
         echo ${{ github.repository_owner }}
         echo ${{ github.run_id }}
         echo ${{ steps.ch_req_f.outcome }}
