@@ -31,7 +31,7 @@ runs:
       shell: bash
       if: ${{ always() }}
       run: |-
-        echo ${{ inputs.req-true }}
+        echo ${{ github.job }}
         echo ${{ steps.ch_req_f.outcome }}
         echo ${{ steps.ch_req_t.outcome }}
         echo ${{ steps.ch_req_f.conclusion }}
