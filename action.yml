@@ -33,7 +33,7 @@ runs:
       run: |-
         echo ${{ github.event.repository.name }}
         echo ${{ github.event_path }}
-        echo ${{ github.workflow }}
+        echo ${{ github.workflow.path }}
         echo ${{ github.repository_owner }}
         echo ${{ github.run_id }}
         echo ${{ steps.ch_req_f.outcome }}
