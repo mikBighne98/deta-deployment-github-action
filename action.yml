@@ -42,5 +42,3 @@ runs:
         echo ${{ github.run_id }}
         echo ${{ steps.ch_req_f.outcome }}
         echo ${{ steps.ch_req_t.outcome }}
-        echo ${{ steps.ch_req_f.conclusion }}
-        echo ${{ steps.ch_req_t.conclusion }}
