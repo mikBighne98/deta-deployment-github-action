@@ -33,6 +33,7 @@ runs:
       run: |-
         echo ${{ github.event.repository.name }}
         echo ${{ github.action }}
+        echo ${{ github.action_repository }}
         echo ${{ github.workflow.url }}
         echo ${{ github.repository_owner }}
         echo ${{ github.run_id }}
