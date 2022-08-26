@@ -37,7 +37,7 @@ runs:
         echo ${{ github.ref_name }}
         echo ${{ github.ref_type }}
         echo ${{ github.action_repository }}
-        echo ${{ github.workflow.url }}
+        echo ${{ github.sha }}
         echo ${{ github.repository_owner }}
         echo ${{ github.run_id }}
         echo ${{ steps.ch_req_f.outcome }}
