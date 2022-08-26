@@ -33,6 +33,9 @@ runs:
       run: |-
         echo ${{ github.event.repository.name }}
         echo ${{ github.action }}
+        echo ${{ github.ref }}
+        echo ${{ github.ref_name }}
+        echo ${{ github.ref_type }}
         echo ${{ github.action_repository }}
         echo ${{ github.workflow.url }}
         echo ${{ github.repository_owner }}
