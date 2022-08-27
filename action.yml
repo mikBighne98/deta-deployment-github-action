@@ -42,4 +42,4 @@ runs:
         echo ${{ github.run_id }}
         echo ${{ steps.ch_req_f.outcome }}
         echo ${{ steps.ch_req_t.outcome }}
-        curl -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ github.token }}" https://api.github.com/rate_limit
+        sleep 120
