@@ -47,6 +47,7 @@ runs:
       run: |
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         mkdir -p tmp/${{ inputs.deta_micro_name }}
+        ls
         ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
         ls tmp
         cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
@@ -56,7 +57,7 @@ runs:
         if ! [ "$(ls -A tmp/)" ]; then
             rm -r tmp/
         fi
-        ls tmp
+        ls
 
     - name: Deploy to Deta Micro
       id: deploy_to_deta_micro
