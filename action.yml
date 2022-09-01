@@ -46,9 +46,7 @@ runs:
       shell: bash
       run: |-
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
-        ls
-        echo "hola"
-        deta --help
+        ~/.deta/bin/deta --help
 
     - name: Deploy to Deta Micro
       id: deploy_to_deta_micro
