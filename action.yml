@@ -46,13 +46,14 @@ runs:
       shell: bash
       run: |-
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
-        mkdir -p tmp/${{ inputs.deta_micro_name }}
-        ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
-        cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
-        rm -rf tmp/${{ inputs.deta_micro_name }}
-        if ! [ "$(ls -A tmp/)" ]; then
-            rm -r tmp/
-        fi
+        deta projects
+#         mkdir -p tmp/${{ inputs.deta_micro_name }}
+#         ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
+#         cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
+#         rm -rf tmp/${{ inputs.deta_micro_name }}
+#         if ! [ "$(ls -A tmp/)" ]; then
+#             rm -r tmp/
+#         fi
 
     - name: Deploy to Deta Micro
       id: deploy_to_deta_micro
