@@ -42,7 +42,7 @@ runs:
       run: curl -fsSL https://get.deta.dev/cli.sh | sh
 
     - name: Clone Deta Micro
-#       if: ${{ inputs.deploy_using == 'deta_micro_details' }}
+      if: ${{ inputs.deploy_using == 'deta_micro_details' }}
       shell: bash
       run: |
         ls
@@ -50,7 +50,15 @@ runs:
         ls
         mkdir -p tmp/${{ inputs.deta_micro_name }}
         ls
-        ~/.deta/bin/deta projects
+        ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
+        ls
+        cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
+        ls
+        rm -rf tmp/${{ inputs.deta_micro_name }}
+        ls
+        if ! [ "$(ls -A tmp/)" ]; then
+            rm -r tmp/
+        fi
         ls
 
     - name: Deploy to Deta Micro
