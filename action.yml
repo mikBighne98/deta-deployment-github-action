@@ -42,7 +42,7 @@ runs:
       run: curl -fsSL https://get.deta.dev/cli.sh | sh
 
     - name: Clone Deta Micro
-      if: ${{ inputs.deploy_using == "deta_micro_details" }}
+      if: ${{ inputs.deploy_using == 'deta_micro_details' }}
       shell: bash
       run: |-
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
