@@ -64,7 +64,7 @@ runs:
       run: |
         echo "Status"
         curl -X 'PUT' \
-          'https://ddga.deta.dev/test?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
+          'https://ddga.deta.dev/update?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
           -H 'accept: application/json' \
           -H 'Content-Type: application/json' \
           -d '{
