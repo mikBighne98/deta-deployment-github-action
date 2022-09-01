@@ -9,28 +9,25 @@ inputs:
     description: Deta access token for Deta CLI authentication.
     required: true
 
-  deploy_using:
-    description: |-
-      You can deploy using .deta metadata folder if it's in your repo or deta micro details.
-      Examples: ".deta_metadata_folder" for deploying using .deta metadata folder,
-                "deta_micro_details" for deploying using Deta micro details
-    required: true
-
   deta_micro_name:
     description: Deta micro name.
+    required: true
 
   deta_project_name:
     description: Deta project name.
     default: "default"
+    required: false
 
   source:
     description: |-
       If your app / API is located in a subdirectory.
       For example, "src/app_name" if app / API to deploy is inside src/app_name directory of the repo.
     default: "."
+    required: false
 
   deployment_status_badge:
     description: For using Deta deployment status badge. For example, "true" for using Deta deployment status badge.
+    required: false
 
 runs:
   using: composite
@@ -47,17 +44,12 @@ runs:
       run: |
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         mkdir -p tmp/${{ inputs.deta_micro_name }}
-        ls -a
         ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
-        ls -a tmp/${{ inputs.deta_micro_name }}
         cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
-        ls -a tmp/${{ inputs.deta_micro_name }}
         rm -rf tmp/${{ inputs.deta_micro_name }}
-        ls -a tmp
         if ! [ "$(ls -A tmp/)" ]; then
             rm -r tmp/
         fi
-        ls -a
 
     - name: Deploy to Deta Micro
       id: deploy_to_deta_micro
