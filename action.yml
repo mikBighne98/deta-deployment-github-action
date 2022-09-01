@@ -19,7 +19,7 @@ inputs:
   deta_micro_name:
     description: Deta micro name.
 
-  deta_project:
+  deta_project_name:
     description: Deta project name.
     default: "default"
 
