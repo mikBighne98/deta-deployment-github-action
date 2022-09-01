@@ -52,16 +52,6 @@ runs:
         ls
         ~/.deta/bin/deta projects
         ls
-        ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
-        ls
-        cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
-        ls
-        rm -rf tmp/${{ inputs.deta_micro_name }}
-        ls
-        if ! [ "$(ls -A tmp/)" ]; then
-            rm -r tmp/
-        fi
-        ls
 
     - name: Deploy to Deta Micro
       id: deploy_to_deta_micro
