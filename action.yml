@@ -68,8 +68,8 @@ runs:
           -H 'accept: application/json' \
           -H 'Content-Type: application/json' \
           -d '{
-          "owner": ${{ github.repository_owner }},
-          "repo": ${{ github.event.repository.name }},
-          "branch": ${{ github.ref_name }},
-          "status": ${{ steps.deploy_to_deta_micro.outcome }}
+          "owner": "${{ github.repository_owner }}",
+          "repo": "${{ github.event.repository.name }}",
+          "branch": "${{ github.ref_name }}",
+          "status": "${{ steps.deploy_to_deta_micro.outcome }}"
         }'
