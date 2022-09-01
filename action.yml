@@ -47,7 +47,6 @@ runs:
       run: |
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         mkdir -p tmp/${{ inputs.deta_micro_name }}
-        ls tmp
         ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
         ls tmp
         cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
