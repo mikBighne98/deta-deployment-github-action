@@ -62,6 +62,7 @@ runs:
       if: ${{ always() && inputs.deployment_status_badge == true }}
       shell: bash
       run: |
+        echo "Status"
         curl -X 'PUT' \
           'https://ddga.deta.dev/test?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
           -H 'accept: application/json' \
