@@ -1,45 +1,78 @@
-name: Test
-description: A test for action.
+name: Deta Deployment Github Action
+branding:
+  icon: upload-cloud
+  color: purple
+description: Github Action for deploying apps / APIs to Deta Micros.
+
 inputs:
-  req-false:
-    description: 'Who to greet'
-    required: false
-   
-  req-true:
-    description: 'Who to greet2'
+  deta_access_token:
+    description: Deta access token for Deta CLI authentication.
     required: true
-    
-  req:
-    description: None
-    
+
+  deploy_using:
+    description: |-
+      You can deploy using .deta metadata folder if it's in your repo or deta micro details.
+      Examples: ".deta_metadata_folder" for deploying using .deta metadata folder,
+                "deta_micro_details" for deploying using Deta micro details
+    required: true
+
+  deta_micro_name:
+    description: Deta micro name.
+
+  deta_project:
+    description: Deta project name.
+    default: "default"
+
+  source:
+    description: |-
+      If your app / API is located in a subdirectory.
+      For example, "src/app_name" if app / API to deploy is inside src/app_name directory of the repo.
+    default: "."
+
+  deployment_status_badge:
+    description: For using Deta deployment status badge. For example, "true" for using Deta deployment status badge.
 
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - name: Checking for req_false
-      id: ch_req_f
+    - uses: actions/checkout@v3
+
+    - name: Install Deta CLI
+      shell: bash
+      run: curl -fsSL https://get.deta.dev/cli.sh | sh
+
+    - name: Clone Deta Micro
+      if: ${{ inputs.deploy_using == "deta_micro_details" }}
       shell: bash
       run: |-
-        echo ${{ inputs.req-false }}
-#         exit 1
-    - name: Checking for req_true
-      id: ch_req_t
+        export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
+        mkdir -p tmp/${{ inputs.deta_micro_name }}
+        ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
+        cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
+        rm -rf tmp/${{ inputs.deta_micro_name }}
+        if ! [ "$(ls -A tmp/)" ]; then
+            rm -r tmp/
+        fi
+
+    - name: Deploy to Deta Micro
+      id: deploy_to_deta_micro
       shell: bash
-      run: echo ${{ inputs.req-true }}
-          
-    - name: Checking for req
-      shell: bash
-      if: ${{ always() }}
       run: |-
-        echo ${{ github.event.repository.name }}
-        echo ${{ github.action }}
-        echo ${{ github.ref }}
-        echo ${{ github.ref_name }}
-        echo ${{ github.ref_type }}
-        echo ${{ github.action_repository }}
-        echo ${{ github.sha }}
-        echo ${{ github.repository_owner }}
-        echo ${{ github.run_id }}
-        echo ${{ steps.ch_req_f.outcome }}
-        echo ${{ steps.ch_req_t.outcome }}
-        sleep 120
+        export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
+        cd ${{ inputs.source }}
+        ~/.deta/bin/deta deploy
+
+    - name: Update Deta deployment status badge
+      if: ${{ always() && inputs.deployment_status_badge == true }}
+      shell: bash
+      run: |-
+        curl -X 'PUT' \
+          'https://ddga.deta.dev/test?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
+          -H 'accept: application/json' \
+          -H 'Content-Type: application/json' \
+          -d '{
+          "owner": ${{ github.repository_owner }},
+          "repo": ${{ github.event.repository.name }},
+          "branch": ${{ github.ref_name }},
+          "status": ${{ steps.deploy_to_deta_micro.outcome }}
+        }'
