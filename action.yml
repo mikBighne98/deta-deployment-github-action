@@ -49,9 +49,9 @@ runs:
         mkdir -p tmp/${{ inputs.deta_micro_name }}
         ls
         ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
-        ls tmp
+        ls tmp/${{ inputs.deta_micro_name }}
         cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
-        ls tmp
+        ls tmp/${{ inputs.deta_micro_name }}
         rm -rf tmp/${{ inputs.deta_micro_name }}
         ls tmp
         if ! [ "$(ls -A tmp/)" ]; then
