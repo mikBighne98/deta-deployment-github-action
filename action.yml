@@ -44,7 +44,7 @@ runs:
     - name: Clone Deta Micro
 #       if: ${{ inputs.deploy_using == 'deta_micro_details' }}
       shell: bash
-      run: |-
+      run: |
         ls
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         ls
@@ -64,7 +64,7 @@ runs:
     - name: Deploy to Deta Micro
       id: deploy_to_deta_micro
       shell: bash
-      run: |-
+      run: |
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         cd ${{ inputs.source }}
         ~/.deta/bin/deta deploy
@@ -72,7 +72,7 @@ runs:
     - name: Update Deta deployment status badge
       if: ${{ always() && inputs.deployment_status_badge == true }}
       shell: bash
-      run: |-
+      run: |
         curl -X 'PUT' \
           'https://ddga.deta.dev/test?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
           -H 'accept: application/json' \
