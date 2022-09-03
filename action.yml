@@ -28,9 +28,13 @@ inputs:
   deployment_status_badge:
     description: For using Deta deployment status badge. For example, "true" for using Deta deployment status badge.
     required: false
+    
+outputs:
+  
 
 runs:
   using: composite
+  
   steps:
     - uses: actions/checkout@v3
 
@@ -43,7 +47,7 @@ runs:
       run: |
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         mkdir -p tmp/${{ inputs.deta_micro_name }}
-        ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
+        ( ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }} ) || ( export FOO=bar; echo"::set-env name=FOO::$FOO" )
         cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
         rm -rf tmp/${{ inputs.deta_micro_name }}
         if ! [ "$(ls -A tmp/)" ]; then
@@ -54,6 +58,7 @@ runs:
       id: deploy_to_deta_micro
       shell: bash
       run: |
+        echo $FOO
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         cd ${{ inputs.source }}
         ~/.deta/bin/deta deploy
