@@ -28,9 +28,6 @@ inputs:
   deployment_status_badge:
     description: For using Deta deployment status badge. For example, "true" for using Deta deployment status badge.
     required: false
-    
-outputs:
-  
 
 runs:
   using: composite
