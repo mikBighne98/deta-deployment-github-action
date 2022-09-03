@@ -61,6 +61,13 @@ runs:
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         cd ${{ inputs.source }}
         ~/.deta/bin/deta deploy
+        
+    - name: Create a new Micro
+      if: ${{ steps.clone_deta_micro.outcome == 'failure' }}
+      shell: bash
+      run: |
+        export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
+        ~/.deta/bin/deta new --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} ${{ inputs.source }}
 
     - name: Update Deta deployment status badge
       if: ${{ always() && inputs.deployment_status_badge == 'true' }}
