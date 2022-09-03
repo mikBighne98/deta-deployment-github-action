@@ -27,7 +27,8 @@ inputs:
 
   deployment_status_badge:
     description: For using Deta deployment status badge. For example, "true" for using Deta deployment status badge.
-    required: false
+    required: true
+    type: boolean
 
 runs:
   using: composite
@@ -63,7 +64,7 @@ runs:
         ~/.deta/bin/deta deploy
 
     - name: Update Deta deployment status badge
-      if: ${{ always() && ( inputs.deployment_status_badge == 'true' ) }}
+      if: ${{ always() && inputs.deployment_status_badge }}
       shell: bash
       run: |
         echo "Status"
