@@ -59,7 +59,6 @@ runs:
       if: ${{ steps.clone_deta_micro.outcome == 'success' }}
       shell: bash
       run: |
-        echo $FOO
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         cd ${{ inputs.source }}
         ~/.deta/bin/deta deploy
