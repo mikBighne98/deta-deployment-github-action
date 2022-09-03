@@ -64,7 +64,7 @@ runs:
         ~/.deta/bin/deta deploy
 
     - name: Update Deta deployment status badge
-      if: ${{ always() && inputs.deployment_status_badge == 'true' }}
+      if: ${{ always() && $inputs.deployment_status_badge = true }}
       shell: bash
       run: |
         echo "Status"
