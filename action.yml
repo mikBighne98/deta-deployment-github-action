@@ -27,8 +27,7 @@ inputs:
 
   deployment_status_badge:
     description: For using Deta deployment status badge. For example, "true" for using Deta deployment status badge.
-    required: true
-    type: boolean
+    required: false
 
 runs:
   using: composite
@@ -64,10 +63,9 @@ runs:
         ~/.deta/bin/deta deploy
 
     - name: Update Deta deployment status badge
-      if: ${{ always() && inputs.deployment_status_badge }}
+      if: ${{ always() && inputs.deployment_status_badge == 'true' }}
       shell: bash
       run: |
-        echo "Status"
         curl -X 'PUT' \
           'https://ddga.deta.dev/update?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
           -H 'accept: application/json' \
