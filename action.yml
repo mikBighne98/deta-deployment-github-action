@@ -68,7 +68,9 @@ runs:
       run: |
         export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
         ~/.deta/bin/deta new --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} ${{ inputs.source }}
-
+        path=$(grep -oP '"path":"\K.*?(?=")' ${{ inputs.source }}/.deta/prog_info)
+        echo "https://$path.deta.dev"
+        
     - name: Update Deta deployment status badge
       if: ${{ always() && inputs.deployment_status_badge == 'true' }}
       shell: bash
