@@ -83,7 +83,9 @@ runs:
         then
           status=${{ steps.create_a_new_micro.outcome }}
         fi
+        dune=trae
         echo $status
+        echo $dune
         
         curl -X 'PUT' \
           'https://ddga.deta.dev/update?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
