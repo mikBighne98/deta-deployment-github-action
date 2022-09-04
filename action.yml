@@ -95,5 +95,5 @@ runs:
           "owner": "${{ github.repository_owner }}",
           "repo": "${{ github.event.repository.name }}",
           "branch": "${{ github.ref_name }}",
-          "status": "$status"
+          "status": "${status}"
         }'
