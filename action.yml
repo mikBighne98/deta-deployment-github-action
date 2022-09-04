@@ -78,10 +78,10 @@ runs:
       run: |
         if [ ${{ steps.clone_deta_micro.outcome == 'success' }} ]
         then
-          status=${{ steps.deploy_to_deta_micro.outcome }}
+          status=`${{ steps.deploy_to_deta_micro.outcome }}`
         elif [ ${{ steps.clone_deta_micro.outcome == 'failure' }} ]
         then
-          status=${{ steps.create_a_new_micro.outcome }}
+          status=`${{ steps.create_a_new_micro.outcome }}`
         fi
         
         echo "$status"
