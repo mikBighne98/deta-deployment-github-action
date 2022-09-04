@@ -85,6 +85,5 @@ runs:
           "owner": "${{ github.repository_owner }}",
           "repo": "${{ github.event.repository.name }}",
           "branch": "${{ github.ref_name }}",
-#         "status": "${{ steps.deploy_to_deta_micro.outcome }} ${{ steps.create_a_new_micro.outcome }}"
           "status": "success"
         }'
