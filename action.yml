@@ -76,15 +76,15 @@ runs:
       if: ${{ always() && inputs.deployment_status_badge == 'true' }}
       shell: bash
       run: |
-        if [ ${{ steps.clone_deta_micro.outcome == 'success' }} ]
+        if [[ ${{ steps.clone_deta_micro.outcome == 'success' }} ]]
         then
-          status="${{ steps.deploy_to_deta_micro.outcome }}"
-        elif [ ${{ steps.clone_deta_micro.outcome == 'failure' }} ]
+          status=${{ steps.deploy_to_deta_micro.outcome }}
+        elif [[ ${{ steps.clone_deta_micro.outcome == 'failure' }} ]]
         then
-          status="${{ steps.create_a_new_micro.outcome }}"
+          status=${{ steps.create_a_new_micro.outcome }}
         fi
         
-        echo "$status"
+        echo $status
         
         curl -X 'PUT' \
           'https://ddga.deta.dev/update?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
