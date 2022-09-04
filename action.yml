@@ -76,16 +76,7 @@ runs:
       if: ${{ always() && inputs.deployment_status_badge == 'true' }}
       shell: bash
       run: |
-        status_func () {
-          if [ ${{ steps.clone_deta_micro.outcome == 'success' }} ]
-          then
-            return ${{ steps.deploy_to_deta_micro.outcome }}
-          elif [ ${{ steps.clone_deta_micro.outcome == 'failure' }} ]
-          then
-            return ${{ steps.create_a_new_micro.outcome }}
-          fi
-        }
-        
+        echo ${{ steps.deploy_to_deta_micro.outcome }}, ${{ steps.create_a_new_micro.outcome }}"
         curl -X 'PUT' \
           'https://ddga.deta.dev/update?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
           -H 'accept: application/json' \
@@ -94,5 +85,5 @@ runs:
           "owner": "${{ github.repository_owner }}",
           "repo": "${{ github.event.repository.name }}",
           "branch": "${{ github.ref_name }}",
-          "status": status_func
+          "status": "${{ steps.deploy_to_deta_micro.outcome }}, ${{ steps.create_a_new_micro.outcome }}"
         }'
