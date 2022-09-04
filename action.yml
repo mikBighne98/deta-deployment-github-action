@@ -91,3 +91,5 @@ runs:
           "branch": "${{ github.ref_name }}",
           "status": "${{ steps.deploy_to_deta_micro.outcome }} ${{ steps.create_a_new_micro.outcome }}"
         }'
+        
+        echo "${{ inputs.deta_micro_name }}${{ inputs.deta_project_name }}${{ inputs.runtime }}${{ inputs.source }}"
