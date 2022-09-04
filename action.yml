@@ -84,6 +84,8 @@ runs:
           status=${{ steps.create_a_new_micro.outcome }}
         fi
         
+        echo "$status"
+        
         curl -X 'PUT' \
           'https://ddga.deta.dev/update?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
           -H 'accept: application/json' \
