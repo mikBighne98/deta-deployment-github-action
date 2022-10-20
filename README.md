@@ -1,7 +1,7 @@
 # deployment-status-test
 
-[![Hello](https://dry0f3.deta.dev/tests/test/test.yml/badge.svg?branch=test&event=deployment_status)](https://github.com/mikBighne98/deployment-status-test/actions/workflows/test.yml)
+[![Hello](https://ddga.deta.dev/mikBighne98/test-action/deployment-test.yml/badge.svg?branch=main)](https://github.com/mikBighne98/deployment-status-test/actions/workflows/test.yml)
 
-[![Hello](https://dry0f3.deta.dev/tests/test/test.yml/badge.svg?branch=test&event=deployment_status)](https://github.com/mikBighne98/deployment-status-test/actions/workflows/test.yml)
+[![Hello](https://ddga.deta.dev/mikBighne98/test-action/deployment-test.yml/badge.svg?branch=main)](https://github.com/mikBighne98/deployment-status-test/actions/workflows/test.yml)
 
-![Hello](https://dry0f3.deta.dev/tests/test/test.yml/badge.svg?branch=test&event=deployment_status)
+![Hello](https://ddga.deta.dev/mikBighne98/test-action/deployment-test.yml/badge.svg?branch=main)
