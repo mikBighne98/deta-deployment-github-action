@@ -41,55 +41,7 @@ runs:
 
     - name: Install Deta CLI
       shell: bash
-      run: curl -fsSL https://get.deta.dev/cli.sh | sh
-
-    - name: Clone Deta Micro
-      id: clone_deta_micro
-      shell: bash
-      continue-on-error: true
       run: |
-        export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
-        mkdir -p tmp/${{ inputs.deta_micro_name }}
-        ~/.deta/bin/deta clone --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} tmp/${{ inputs.deta_micro_name }}
-        cp -r tmp/${{ inputs.deta_micro_name }}/.deta ${{ inputs.source }}
-        rm -rf tmp/${{ inputs.deta_micro_name }}
-        if ! [ "$(ls -A tmp/)" ]; then
-            rm -r tmp/
-        fi
-
-    - name: Deploy to Deta Micro
-      id: deploy_to_deta_micro
-      if: ${{ steps.clone_deta_micro.outcome == 'success' }}
-      shell: bash
-      run: |
-        export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
-        cd ${{ inputs.source }}
-        ~/.deta/bin/deta deploy
-        
-    - name: Create a new Micro
-      id: create_a_new_micro
-      if: ${{ steps.clone_deta_micro.outcome == 'failure' }}
-      shell: bash
-      run: |
-        export DETA_ACCESS_TOKEN=${{ inputs.deta_access_token }}
-        ~/.deta/bin/deta new --name ${{ inputs.deta_micro_name }} --project ${{ inputs.deta_project_name }} ${{ inputs.source }} ${{ inputs.runtime }}
-        path=$(grep -oP '"path":"\K.*?(?=")' ${{ inputs.source }}/.deta/prog_info)
-        echo "https://$path.deta.dev"
-        
-    - name: Update Deta deployment status badge
-      if: ${{ always() && inputs.deployment_status_badge == 'true' }}
-      shell: bash
-      run: |
-        echo "${{ steps.deploy_to_deta_micro.outcome }} ${{ steps.create_a_new_micro.outcome }}"
-        curl -X 'PUT' \
-          'https://ddga.deta.dev/update?run_id=${{ github.run_id }}&job_id=${{ github.job }}' \
-          -H 'accept: application/json' \
-          -H 'Content-Type: application/json' \
-          -d '{
-          "owner": "${{ github.repository_owner }}",
-          "repo": "${{ github.event.repository.name }}",
-          "branch": "${{ github.ref_name }}",
-          "status": "${{ steps.deploy_to_deta_micro.outcome }} ${{ steps.create_a_new_micro.outcome }}"
-        }'
-        
-        echo "${{ inputs.deta_micro_name }}${{ inputs.deta_project_name }}${{ inputs.runtime }}${{ inputs.source }}"
+        ls -a
+        cd ..
+        ls -a
