@@ -26,7 +26,7 @@ runs:
 #       echo '{"access_token":"${{ secrets.ACCESS_TOKEN }}"}' > ~/.detaspace/space_tokens
 
     - name: Get .space folder and push
-      shell: bash
+      shell: script -q -e -c "bash {0}"
       run: |
         export PATH="/home/runner/.detaspace/bin:$PATH"
         space link -i ${{ inputs.project_id }}
