@@ -19,20 +19,15 @@ runs:
   steps:
     - name: Install Deta Space CLI & add access token
       shell: bash
+      env:
+        SPACE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
         curl -fsSL https://get.deta.dev/space-cli.sh | sh
-        echo '{"access_token":"${{ secrets.ACCESS_TOKEN }}"}' > ~/.detaspace/space_tokens
+        # echo '{"access_token":"${{ secrets.ACCESS_TOKEN }}"}' > ~/.detaspace/space_tokens
 
-    - name: Get .space folder
+    - name: Get .space folder and push
       shell: bash
       run: |
         export PATH="/home/runner/.detaspace/bin:$PATH"
-        space link -d tmp -i ${{ secrets.PROJECT_ID }}
-        cp -r tmp/.space .
-        rm -rf tmp
-
-    - name: Space push
-      shell: bash
-      run: |
-        export PATH="/home/runner/.detaspace/bin:$PATH"
+        space link -i ${{ secrets.PROJECT_ID }}
         space push
