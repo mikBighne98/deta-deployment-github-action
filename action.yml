@@ -29,6 +29,5 @@ runs:
       shell: bash
       run: |
         export PATH="/home/runner/.detaspace/bin:$PATH"
-        echo ${{ inputs.project_id }}
-#       space link -i ${{ inputs.project_id }}
-#       space push
+        space link -i ${{ inputs.project_id }}
+        space push
