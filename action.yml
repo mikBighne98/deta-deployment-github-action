@@ -1,47 +1,38 @@
-name: Deta Deployment Github Action
+name: Deta Space Deployment Github Action
+description: Github Action for deploying Deta Space apps.
 branding:
   icon: upload-cloud
   color: purple
-description: Github Action for deploying apps / APIs to Deta Micros.
 
 inputs:
-  deta_access_token:
-    description: Deta access token for Deta CLI authentication.
+  access_token:
+    description: Deta access token for Deta Space CLI authentication.
     required: true
 
-  deta_micro_name:
-    description: Deta micro name.
+  project_id:
+    description: Deta Space app project ID.
     required: true
-
-  deta_project_name:
-    description: Deta project name.
-    default: "default"
-    required: false
-
-  source:
-    description: |-
-      If your app / API is located in a subdirectory.
-      For example, "src/app_name" if app / API to deploy is inside src/app_name directory of the repo.
-    default: "."
-    required: false
-    
-  runtime:
-    description: Specific runtime for creating micro
-    required: false
-
-  deployment_status_badge:
-    description: For using Deta deployment status badge. For example, "true" for using Deta deployment status badge.
-    required: false
 
 runs:
   using: composite
-  
-  steps:
-    - uses: actions/checkout@v3
 
-    - name: Install Deta CLI
+  steps:
+    - name: Install Deta Space CLI & add access token
       shell: bash
       run: |
-        ls -a
-        cd ..
-        ls -a
+        curl -fsSL https://get.deta.dev/space-cli.sh | sh
+        echo '{"access_token":"${{ secrets.ACCESS_TOKEN }}"}' > ~/.detaspace/space_tokens
+
+    - name: Get .space folder
+      shell: bash
+      run: |
+        export PATH="/home/runner/.detaspace/bin:$PATH"
+        space link -d tmp -i ${{ secrets.PROJECT_ID }}
+        cp -r tmp/.space .
+        rm -rf tmp
+
+    - name: Space push
+      shell: bash
+      run: |
+        export PATH="/home/runner/.detaspace/bin:$PATH"
+        space push
