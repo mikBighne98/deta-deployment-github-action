@@ -23,7 +23,7 @@ runs:
         SPACE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
         curl -fsSL https://get.deta.dev/space-cli.sh | sh
-        # echo '{"access_token":"${{ secrets.ACCESS_TOKEN }}"}' > ~/.detaspace/space_tokens
+#       echo '{"access_token":"${{ secrets.ACCESS_TOKEN }}"}' > ~/.detaspace/space_tokens
 
     - name: Get .space folder and push
       shell: bash
